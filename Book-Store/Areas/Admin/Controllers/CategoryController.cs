@@ -73,7 +73,7 @@ namespace Book_Store.Areas.Admin.Controllers
             }
             _unitOfWork.Category.Remove(deleteCategory);
             _unitOfWork.Save();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index");            
         }
         #endregion
     }

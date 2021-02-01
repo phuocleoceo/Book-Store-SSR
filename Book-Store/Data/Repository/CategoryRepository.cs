@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Book_Store.Data.Repository;
+﻿using System.Linq;
 using Book_Store.Data.Repository.IRepository;
 using Book_Store.Models;
 
@@ -18,7 +15,7 @@ namespace Book_Store.Data.Repository
 
         public void Update(Category category)
         {
-            var updateCategory = _db.Categories.FirstOrDefault(c => c.Id == category.Id);
+            var updateCategory = _db.CoverTypes.FirstOrDefault(c => c.Id == category.Id);
             if (updateCategory != null)
             {
                 updateCategory.Name = category.Name;
