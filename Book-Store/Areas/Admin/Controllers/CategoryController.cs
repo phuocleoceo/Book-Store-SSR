@@ -15,11 +15,13 @@ namespace Book_Store.Areas.Admin.Controllers
             _unitOfWork = unitOfWork;
         }
 
+        #region Read
         public IActionResult Index()
         {
             var data = _unitOfWork.Category.GetAll();
             return View(data);
         }
+        #endregion
 
         #region Update + Insert
         [HttpGet]
@@ -58,6 +60,20 @@ namespace Book_Store.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
             return View(category);
+        }
+        #endregion
+
+        #region Delete
+        public IActionResult Delete(int id)
+        {
+            var deleteCategory = _unitOfWork.Category.Get(id);
+            if (deleteCategory == null)
+            {
+                return NotFound();
+            }
+            _unitOfWork.Category.Remove(deleteCategory);
+            _unitOfWork.Save();
+            return RedirectToAction("Index");
         }
         #endregion
     }
