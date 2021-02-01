@@ -6,11 +6,11 @@ using System.Collections.Generic;
 namespace Book_Store.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class CategoryController : Controller
+    public class CoverTypeController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public CategoryController(IUnitOfWork unitOfWork)
+        public CoverTypeController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
@@ -18,7 +18,7 @@ namespace Book_Store.Areas.Admin.Controllers
         #region Read
         public IActionResult Index()
         {
-            var data = _unitOfWork.Category.GetAll();
+            var data = _unitOfWork.CoverType.GetAll();
             return View(data);
         }
         #endregion
@@ -27,51 +27,51 @@ namespace Book_Store.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Upsert(int? id)
         {
-            Category category = new Category();
+            CoverType coverType = new CoverType();
             // Create
             if (id == null)
             {
-                return View(category);
+                return View(coverType);
             }
             // Edit
-            category = _unitOfWork.Category.Get(id.GetValueOrDefault()); //value or null
-            if (category == null)
+            coverType = _unitOfWork.CoverType.Get(id.GetValueOrDefault()); //value or null
+            if (coverType == null)
             {
                 return NotFound();
             }
-            return View(category);
+            return View(coverType);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(Category category)
+        public IActionResult Upsert(CoverType coverType)
         {
             if (ModelState.IsValid)
             {
-                if (category.Id == 0)
+                if (coverType.Id == 0)
                 {
-                    _unitOfWork.Category.Add(category);
+                    _unitOfWork.CoverType.Add(coverType);
                 }
                 else
                 {
-                    _unitOfWork.Category.Update(category);
+                    _unitOfWork.CoverType.Update(coverType);
                 }
                 _unitOfWork.Save();
                 return RedirectToAction("Index");
             }
-            return View(category);
+            return View(coverType);
         }
         #endregion
 
         #region Delete
         public IActionResult Delete(int id)
         {
-            var deleteCategory = _unitOfWork.Category.Get(id);
-            if (deleteCategory == null)
+            var deleteCT = _unitOfWork.CoverType.Get(id);
+            if (deleteCT == null)
             {
                 return NotFound();
             }
-            _unitOfWork.Category.Remove(deleteCategory);
+            _unitOfWork.CoverType.Remove(deleteCT);
             _unitOfWork.Save();
             return RedirectToAction("Index");
         }
