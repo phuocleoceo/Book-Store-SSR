@@ -15,7 +15,7 @@ namespace Book_Store.Data.Repository
 
         public void Update(CoverType coverType)
         {
-            var updateCT = _db.Categories.FirstOrDefault(c => c.Id == coverType.Id);
+            var updateCT = _db.CoverTypes.FirstOrDefault(c => c.Id == coverType.Id);
             if (updateCT != null)
             {
                 updateCT.Name = coverType.Name;
