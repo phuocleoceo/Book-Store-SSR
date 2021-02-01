@@ -1,9 +1,7 @@
 ﻿using Book_Store.Data.Repository.IRepository;
+using Book_Store.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Book_Store.Areas.Admin.Controllers
 {
@@ -21,6 +19,25 @@ namespace Book_Store.Areas.Admin.Controllers
         {
             var data = _unitOfWork.Category.GetAll();
             return View(data);
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                _unitOfWork.Category.Add(category);
+                _unitOfWork.Save();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(category);
         }
     }
 }
