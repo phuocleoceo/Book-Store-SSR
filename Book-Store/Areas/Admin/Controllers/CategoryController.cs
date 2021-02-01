@@ -21,23 +21,44 @@ namespace Book_Store.Areas.Admin.Controllers
             return View(data);
         }
 
+        #region Update + Insert
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult Upsert(int? id)
         {
-            return View();
+            Category category = new Category();
+            // Create
+            if (id == null)
+            {
+                return View(category);
+            }
+            // Edit
+            category = _unitOfWork.Category.Get(id.GetValueOrDefault()); //value or null
+            if (category == null)
+            {
+                return NotFound();
+            }
+            return View(category);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Category category)
+        public IActionResult Upsert(Category category)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.Category.Add(category);
+                if (category.Id == 0)
+                {
+                    _unitOfWork.Category.Add(category);
+                }
+                else
+                {
+                    _unitOfWork.Category.Update(category);
+                }
                 _unitOfWork.Save();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
             return View(category);
         }
+        #endregion
     }
 }

@@ -8,7 +8,7 @@
         <h2 class="text-primary">Category List</h2>
     </div>
     <div class="col-6 text-right">
-        <a class="btn btn-primary" asp-action="Create"><i class="fas fa-plus"></i> &nbsp; Create New Category</a>
+        <a class="btn btn-primary" asp-action="Upsert"><i class="fas fa-plus"></i> &nbsp; Create New Category</a>
     </div>
 </div>
 
@@ -26,12 +26,10 @@
             <tr>
                 <td>@cal.Name</td>
                 <td>
-                    <a asp-action="Details" asp-route-id="@cal.Id" class="btn btn-primary text-white" style="cursor:pointer">
-                        <i class="fa fa-info" style="width:100%"></i>
-                    </a> &nbsp;
-                    <a asp-action="Edit" asp-route-id="@cal.Id" class="btn btn-success text-white" style="cursor:pointer">
+                    &nbsp; &nbsp; &nbsp; &nbsp;
+                    <a asp-action="Upsert" asp-route-id="@cal.Id" class="btn btn-success text-white" style="cursor:pointer">
                         <i class="fas fa-edit"></i>
-                    </a> &nbsp;
+                    </a> &nbsp; &nbsp;
                     <a asp-action="Delete" asp-route-id="@cal.Id" class="btn btn-danger text-white" style="cursor:pointer">
                         <i class="fas fa-trash-alt"></i>
                     </a>
@@ -44,7 +42,7 @@
 <div class="text-center">
     <a href="/Admin/Category/Upsert/id" class="btn btn-success text-white" style="cursor:pointer">
         <i class="fas fa-edit"></i>
-    </a>
+    </a> &nbsp;
     <a class="btn btn-danger text-white" style="cursor:pointer">
         <i class="fas fa-trash-alt"></i>
     </a>
