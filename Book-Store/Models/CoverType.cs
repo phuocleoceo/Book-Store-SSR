@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Book_Store.Models
 {
@@ -9,5 +10,7 @@ namespace Book_Store.Models
         [Required]
         [Display(Name = "Cover Type")]
         public string Name { get; set; }
+
+        public IEnumerable<Product> Products { get; set; }
     }
 }

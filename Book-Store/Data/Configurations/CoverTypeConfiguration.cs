@@ -15,9 +15,8 @@ namespace Book_Store.Data.Configurations
 
             builder.HasData
             (
-                new CoverType { Id = 1, Name = "Paperback" },
-                new CoverType { Id = 2, Name = "Hardcover Case Wrap" },
-                new CoverType { Id = 3, Name = "Hardcover Dust Jacket" }
+                new CoverType { Id = 1, Name = "Bìa mềm" },
+                new CoverType { Id = 2, Name = "Bìa cứng" }
             );
         }
     }

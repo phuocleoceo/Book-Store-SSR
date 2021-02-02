@@ -19,7 +19,10 @@ namespace Book_Store.Data.Configurations
                 new Category { Id = 2, Name = "Truyện trinh thám" },
                 new Category { Id = 3, Name = "Truyện tranh màu" },
                 new Category { Id = 4, Name = "Sách tham khảo" },
-                new Category { Id = 5, Name = "Sách cấm" }
+                new Category { Id = 5, Name = "Sách cấm" },
+                new Category { Id = 6, Name = "Self-Help" },
+                new Category { Id = 7, Name = "Sách tâm lý học" },
+                new Category { Id = 8, Name = "Sách dạy nấu ăn" }
             );
         }
     }

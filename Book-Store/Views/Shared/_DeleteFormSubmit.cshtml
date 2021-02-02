@@ -38,6 +38,7 @@
         btnDelete.onclick = function () {
             deleteForm.action = "@Model" + deleteId;
             deleteForm.submit();
+            toastr.success('Delete Successfully');
         }
     })
 </script>

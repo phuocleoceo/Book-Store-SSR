@@ -14,10 +14,12 @@ namespace Book_Store.Data
         {
             builder.ApplyConfiguration(new CategoryConfiguration());
             builder.ApplyConfiguration(new CoverTypeConfiguration());
+            builder.ApplyConfiguration(new ProductConfiguration());
             base.OnModelCreating(builder);
         }
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<CoverType> CoverTypes { get; set; }
+        public DbSet<Product> Products { get; set; }
     }
 }
