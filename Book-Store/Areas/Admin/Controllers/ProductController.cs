@@ -33,6 +33,7 @@ namespace Book_Store.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Upsert(int? id)
         {
+            //SelectListItem khi render sẽ thành <option></option>
             ProductVM productVM = new ProductVM()
             {
                 Product = new Product(),
