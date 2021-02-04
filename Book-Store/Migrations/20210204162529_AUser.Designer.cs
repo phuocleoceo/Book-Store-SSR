@@ -4,14 +4,16 @@ using Book_Store.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Book_Store.Migrations
 {
     [DbContext(typeof(BSContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210204162529_AUser")]
+    partial class AUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,53 +79,6 @@ namespace Book_Store.Migrations
                         {
                             Id = 8,
                             Name = "Sách dạy nấu ăn"
-                        });
-                });
-
-            modelBuilder.Entity("Book_Store.Models.Company", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("District")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsAuthorizedCompany")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PostalCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProvinceOrCity")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("StreetAddress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Companies");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            District = "Hải Châu",
-                            IsAuthorizedCompany = true,
-                            Name = "MIT",
-                            PhoneNumber = "0123456789",
-                            PostalCode = "55000",
-                            ProvinceOrCity = "Đà Nẵng",
-                            StreetAddress = "Không biết"
                         });
                 });
 
@@ -471,9 +426,6 @@ namespace Book_Store.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.Property<int>("CompanyId")
-                        .HasColumnType("int");
-
                     b.Property<string>("District")
                         .HasColumnType("nvarchar(max)");
 
@@ -490,28 +442,7 @@ namespace Book_Store.Migrations
                     b.Property<string>("StreetAddress")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("CompanyId");
-
                     b.HasDiscriminator().HasValue("ApplicationUser");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "13bb2c4a-a943-4c0a-9ebe-15863521fbc1",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "ab212273-c995-4fef-a60f-f2cf3ce8bd7f",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "ec37a76a-72de-445e-be60-806c529fd17c",
-                            TwoFactorEnabled = false,
-                            CompanyId = 1,
-                            District = "Liên Chiểu",
-                            Name = "Trương Minh Phước",
-                            PostalCode = "550000",
-                            ProvinceOrCity = "Đà Nẵng",
-                            StreetAddress = "08 Hà Văn Tính"
-                        });
                 });
 
             modelBuilder.Entity("Book_Store.Models.Product", b =>
@@ -576,15 +507,6 @@ namespace Book_Store.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Book_Store.Models.ApplicationUser", b =>
-                {
-                    b.HasOne("Book_Store.Models.Company", "Company")
-                        .WithMany("ApplicationUsers")
-                        .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
