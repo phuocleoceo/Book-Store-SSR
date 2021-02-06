@@ -16,7 +16,6 @@ namespace Book_Store.Data.Repository.IRepository
                               string includeProperties = null);
 
         T GetFirstOrDefault(Expression<Func<T, bool>> filter = null,
-                              Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
                               string includeProperties = null);
 
         void Add(T entity);

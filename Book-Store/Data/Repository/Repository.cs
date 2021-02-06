@@ -52,7 +52,7 @@ namespace Book_Store.Data.Repository
             return query.ToList();
         }
 
-        public T GetFirstOrDefault(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = null)
+        public T GetFirstOrDefault(Expression<Func<T, bool>> filter = null, string includeProperties = null)
         {
             IQueryable<T> query = dbSet;
 

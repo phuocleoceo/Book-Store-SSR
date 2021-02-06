@@ -21,7 +21,7 @@ namespace Book_Store.Models
 
         public string PostalCode { get; set; }
 
-        public int CompanyId { get; set; }
+        public int? CompanyId { get; set; }
         public Company Company { get; set; }
 
         [NotMapped]
