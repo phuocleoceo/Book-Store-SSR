@@ -15,12 +15,7 @@ namespace Book_Store.Data.Repository
 
         public void Update(Company company)
         {
-            var updateCompany = _db.Companies.FirstOrDefault(c => c.Id == company.Id);
-            if (updateCompany != null)
-            {
-                updateCompany.Name = company.Name;
-                _db.SaveChanges();
-            }
+            _db.Update(company);
         }
     }
 }
