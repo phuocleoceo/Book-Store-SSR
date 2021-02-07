@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Book_Store.Data.Repository.IRepository;
 using Book_Store.Data.Repository;
+using Book_Store.Utility;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace Book_Store
 {
@@ -29,10 +31,12 @@ namespace Book_Store
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<IdentityUser,IdentityRole>().AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<BSContext>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddSingleton<IEmailSender, EmailSender>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();
