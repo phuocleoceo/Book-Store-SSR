@@ -29,11 +29,6 @@ namespace Book_Store.Areas.Customer.Controllers
             return View(productList);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
