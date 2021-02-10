@@ -5,10 +5,13 @@ using System.Collections.Generic;
 using Book_Store.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using Book_Store.Utility;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Book_Store.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin + "," + SD.Role_Employee)]
     public class UserController : Controller
     {
         private readonly BSContext _db;

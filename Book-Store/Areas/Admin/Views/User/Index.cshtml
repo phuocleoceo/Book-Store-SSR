@@ -25,6 +25,7 @@
                 <th>Phone</th>
                 <th>Company</th>
                 <th>Role</th>
+                @*<th>Lock / Unlock</th>*@
             </tr>
         </thead>
         <tbody>
@@ -36,7 +37,10 @@
                     <td>@user.PhoneNumber</td>
                     <td>@user.Company.Name</td>
                     <td>@user.Role</td>
-                    @*<td>
+                    @*@{ 
+                        var today = DateTime.UtcNow - new DateTime(1970, 1, 1);
+                    }
+                    <td>
                         &nbsp;
                         <a asp-action="Upsert" asp-route-id="@user.Id" class="btn btn-success text-white" style="cursor:pointer">
                             <i class="fas fa-edit"></i>
@@ -50,7 +54,7 @@
                         </a>
                     </td>*@
                 </tr>
-            }
+                        }
         </tbody>
     </table>
 </div>
