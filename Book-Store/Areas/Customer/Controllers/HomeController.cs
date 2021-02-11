@@ -29,6 +29,17 @@ namespace Book_Store.Areas.Customer.Controllers
             return View(productList);
         }
 
+        public IActionResult Details(int id)
+        {
+            var product = _unitOfWork.Product.GetFirstOrDefault(c => c.Id == id, includeProperties: "Category,CoverType");
+            ShoppingCart cart = new ShoppingCart()
+            {
+                Product = product,
+                ProductId = product.Id
+            };
+            return View(cart);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
