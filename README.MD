@@ -18,3 +18,10 @@ Unit of Work
 
 ## Developing
 
+## ToDo
+Lock/Unlock User
+
+Login with Facebook / Google
+
+Email 
+
