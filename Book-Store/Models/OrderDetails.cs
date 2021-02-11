@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Book_Store.Models
 {
-    public class OrderDetail
+    public class OrderDetails
     {
         [Key]
         public int Id { get; set; }
