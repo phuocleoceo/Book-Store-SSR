@@ -1,12 +1,14 @@
 ﻿using Book_Store.Data.Repository.IRepository;
 using Book_Store.Models;
 using Book_Store.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Book_Store.Areas.Customer.Controllers
@@ -29,6 +31,8 @@ namespace Book_Store.Areas.Customer.Controllers
             return View(productList);
         }
 
+        #region DetailsAndCart
+        [HttpGet]
         public IActionResult Details(int id)
         {
             var product = _unitOfWork.Product.GetFirstOrDefault(c => c.Id == id, includeProperties: "Category,CoverType");
@@ -39,6 +43,47 @@ namespace Book_Store.Areas.Customer.Controllers
             };
             return View(cart);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public IActionResult Details(ShoppingCart cart)
+        {
+            cart.Id = 0;
+            if (ModelState.IsValid)
+            {
+                var claimsIdentity = (ClaimsIdentity)User.Identity;
+                var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+                cart.ApplicationUserId = claim.Value;
+
+                ShoppingCart cartFromDB = _unitOfWork.ShoppingCart.GetFirstOrDefault(c =>
+                  c.ApplicationUserId == cart.ApplicationUserId && c.ProductId == cart.ProductId, includeProperties: "Product");
+
+                //no record exists in database for that product for that user
+                if (cartFromDB == null)
+                {
+                    _unitOfWork.ShoppingCart.Add(cart);
+                }
+                else
+                {
+                    cartFromDB.Count += cart.Count;
+                    //_unitOfWork.ShoppingCart.Update(cartFromDB);
+                }
+                _unitOfWork.Save();
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                var productFromDB = _unitOfWork.Product.GetFirstOrDefault(c => c.Id == cart.ProductId, includeProperties: "Category,CoverType");
+                ShoppingCart cartObj = new ShoppingCart()
+                {
+                    Product = productFromDB,
+                    ProductId = productFromDB.Id
+                };
+            }
+            return View(cart);
+        }
+        #endregion
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

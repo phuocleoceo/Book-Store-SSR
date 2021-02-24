@@ -4,14 +4,16 @@ using Book_Store.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Book_Store.Migrations
 {
     [DbContext(typeof(BSContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210224043330_ChangeName")]
+    partial class ChangeName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -306,8 +308,8 @@ namespace Book_Store.Migrations
                             Description = "Kudo Shinichi là thám tử trung học nổi tiếng, vì chơi ngu nên bị biến thành con nít",
                             ISBN = "1234567891011",
                             ImageUrl = "https://nxbkimdong.com.vn/sites/default/files/1_83.jpg",
-                            ListPrice = 23000f,
-                            Price = 16000f,
+                            ListPrice = 10000f,
+                            Price = 18000f,
                             Title = "Thám tử lừng danh Conan Tập 1"
                         },
                         new
@@ -319,8 +321,8 @@ namespace Book_Store.Migrations
                             Description = "Kudo Shinichi nhưng giờ sống chung với nhà người yêu",
                             ISBN = "1234567845234",
                             ImageUrl = "https://tuoitho.mobi/upload/truyen/tham-tu-lung-danh-conan-tap-2/anh-bia.jpg",
-                            ListPrice = 23000f,
-                            Price = 16000f,
+                            ListPrice = 10000f,
+                            Price = 18000f,
                             Title = "Thám tử lừng danh Conan Tập 2"
                         },
                         new
@@ -332,7 +334,7 @@ namespace Book_Store.Migrations
                             Description = "Sách dạy nấu ăn đỉnh của đỉnh",
                             ISBN = "1234567972354",
                             ImageUrl = "https://muasachhay.vn/wp-content/uploads/2016/04/sach-ky-thuat-nau-an-toan-tap-mua-sach-hay-754x1024.jpg",
-                            ListPrice = 70000f,
+                            ListPrice = 40000f,
                             Price = 55000f,
                             Title = "Kĩ thuật nấu ăn toàn tập"
                         },
@@ -345,7 +347,7 @@ namespace Book_Store.Migrations
                             Description = "Cuốn sách dạy tâm lý gì đó không biết",
                             ISBN = "1234987625648",
                             ImageUrl = "https://product.hstatic.net/1000217031/product/dac_nhan_tam_1ad146f4adc7443ea98c0636f6cba476.jpg",
-                            ListPrice = 100000f,
+                            ListPrice = 50000f,
                             Price = 80000f,
                             Title = "Đắc nhân tâm"
                         });
@@ -608,13 +610,13 @@ namespace Book_Store.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "365a1fc8-1296-40c4-9ea9-c93f192f582a",
+                            Id = "8ace0c58-9a3d-4201-948a-1823f68d8002",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "19fa91d0-9627-4c15-98a6-1c28ab4c295e",
+                            ConcurrencyStamp = "f3f4cb00-c9ce-43fa-9e15-2be3a2167e5a",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "15296b8e-9347-4fae-a83f-27f90cc68d08",
+                            SecurityStamp = "3f39dfc1-0021-4588-a747-6546b0b2ec83",
                             TwoFactorEnabled = false,
                             CompanyId = 1,
                             District = "Liên Chiểu",

@@ -8,7 +8,7 @@ namespace Book_Store.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<ShoppingCart> builder)
         {
-            
+            builder.ToTable("ShoppingCarts");
         }
     }
 }
