@@ -12,6 +12,7 @@ using Book_Store.Data.Repository.IRepository;
 using Book_Store.Data.Repository;
 using Book_Store.Utility;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using System;
 
 namespace Book_Store
 {
@@ -47,6 +48,13 @@ namespace Book_Store
                 options.LogoutPath = $"/Identity/Account/Logout";
                 options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
             });
+            // Session
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,6 +75,7 @@ namespace Book_Store
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseSession();
 
             app.UseAuthentication();
             app.UseAuthorization();

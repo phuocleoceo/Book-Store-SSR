@@ -12,6 +12,8 @@ namespace Book_Store.Utility
         public const string Role_Admin = "Admin";
         public const string Role_Employee = "Employee";
 
+        public const string SessionShoppingCart = "Shopping Cart Session";
+
         public static string ConvertToRawHtml(string source)
         {
             char[] array = new char[source.Length];

@@ -11,6 +11,9 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Book_Store.Data.Repository.IRepository;
+using Microsoft.AspNetCore.Http;
+using Book_Store.Utility;
 
 namespace Book_Store.Areas.Identity.Pages.Account
 {
@@ -20,14 +23,17 @@ namespace Book_Store.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public LoginModel(SignInManager<IdentityUser> signInManager, 
+        public LoginModel(SignInManager<IdentityUser> signInManager,
             ILogger<LoginModel> logger,
-            UserManager<IdentityUser> userManager)
+            UserManager<IdentityUser> userManager,
+            IUnitOfWork unitOfWork)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            _unitOfWork = unitOfWork;
         }
 
         [BindProperty]
@@ -82,6 +88,10 @@ namespace Book_Store.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
+                    var user = _unitOfWork.ApplicationUser.GetFirstOrDefault(c => c.Email == Input.Email);
+                    int count = _unitOfWork.ShoppingCart.GetAll(c => c.ApplicationUserId == user.Id).Count();
+                    HttpContext.Session.SetInt32(SD.SessionShoppingCart, count);
+
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }
