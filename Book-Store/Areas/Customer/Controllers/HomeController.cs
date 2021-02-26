@@ -6,12 +6,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace Book_Store.Areas.Customer.Controllers
 {
@@ -40,7 +38,7 @@ namespace Book_Store.Areas.Customer.Controllers
 
                 HttpContext.Session.SetInt32(SD.SessionShoppingCart, count);
             }
-            
+
             return View(productList);
         }
 

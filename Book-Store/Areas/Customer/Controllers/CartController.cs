@@ -2,18 +2,10 @@
 using Book_Store.Models;
 using Book_Store.Models.ViewModels;
 using Book_Store.Utility;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace Book_Store.Areas.Customer.Controllers
 {
@@ -50,6 +42,9 @@ namespace Book_Store.Areas.Customer.Controllers
             {
                 cart.Price = cart.Product.Price;  //Price is not mapped so we need caculator it
                 ShoppingCartVM.OrderHeader.OrderTotal += (cart.Price * cart.Count);
+
+                //byte[] utf = Encoding.Default.GetBytes(cart.Product.Description);
+                //cart.Product.Description = SD.ConvertToRawHtml(Encoding.UTF8.GetString(utf));
                 cart.Product.Description = SD.ConvertToRawHtml(cart.Product.Description);
 
                 //Only show maxLengthDes of Description
