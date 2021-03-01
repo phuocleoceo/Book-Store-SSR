@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="col-12 text-sm-center col-lg-6 text-lg-left">
                                     <h5><strong>@item.Product.Title</strong></h5>
-                                    <p><small>@item.Product.Description</small></p>
+                                    <p><small>@Html.Raw(item.Product.Description)</small></p>
                                 </div>
                                 <div class="col-12 text-sm-center col-lg-5 text-lg-right row">
                                     <div class="col-4 text-md-right" style="padding-top:5px;">

@@ -43,8 +43,6 @@ namespace Book_Store.Areas.Customer.Controllers
                 cart.Price = cart.Product.Price;  //Price is not mapped so we need caculator it
                 ShoppingCartVM.OrderHeader.OrderTotal += (cart.Price * cart.Count);
 
-                //byte[] utf = Encoding.Default.GetBytes(cart.Product.Description);
-                //cart.Product.Description = SD.ConvertToRawHtml(Encoding.UTF8.GetString(utf));
                 cart.Product.Description = SD.ConvertToRawHtml(cart.Product.Description);
 
                 //Only show maxLengthDes of Description
