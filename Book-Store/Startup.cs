@@ -13,7 +13,6 @@ using Book_Store.Data.Repository;
 using Book_Store.Utility;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using System;
-using Stripe;
 
 namespace Book_Store
 {
@@ -39,8 +38,6 @@ namespace Book_Store
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddSingleton<IEmailSender, EmailSender>();
-
-            services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
 
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -78,7 +75,6 @@ namespace Book_Store
             app.UseStaticFiles();
 
             app.UseRouting();
-            StripeConfiguration.ApiKey = Configuration.GetSection("Stripe")["SecretKey"];
             app.UseSession();
 
             app.UseAuthentication();
