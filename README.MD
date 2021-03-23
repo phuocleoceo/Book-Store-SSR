@@ -17,7 +17,7 @@ Repository Pattern with Dependency Injection
 Unit of Work
 
 ## ScreenShot
-![Alt text](./Capture.png "ScreenShot")
+![Alt text](https://raw.githubusercontent.com/phuocleoceo/Book-Store-SSR/master/Capture.PNG?raw=true)
 
 ## Developing
 
