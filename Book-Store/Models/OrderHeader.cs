@@ -38,16 +38,22 @@ namespace Book_Store.Models
 
         public string TransactionId { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
+        [Required]
         public string StreetAddress { get; set; }
 
+        [Required]
         public string District { get; set; }
 
+        [Required]
         public string ProvinceOrCity { get; set; }
 
+        [Required]
         public string PostalCode { get; set; }
 
+        [Required]
         public string PhoneNumber { get; set; }
     }
 }

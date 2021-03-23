@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
-using Stripe;
 using System;
 using System.Linq;
 using System.Security.Claims;
@@ -170,7 +169,6 @@ namespace Book_Store.Areas.Customer.Controllers
                 };
                 ShoppingCartVM.OrderHeader.OrderTotal += orderDetails.Count * orderDetails.Price;
                 _unitOfWork.OrderDetails.Add(orderDetails);
-
             }
 
             _unitOfWork.ShoppingCart.RemoveRange(ShoppingCartVM.ListCart);
