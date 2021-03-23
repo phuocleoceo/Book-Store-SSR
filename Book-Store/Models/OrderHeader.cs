@@ -30,6 +30,8 @@ namespace Book_Store.Models
 
         public string PaymentStatus { get; set; }
 
+        public string OrderStatus { get; set; }
+
         public DateTime PaymentDate { get; set; }
 
         public DateTime PaymentDueDate { get; set; }
